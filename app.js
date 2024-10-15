@@ -43,16 +43,28 @@ async function generateResponse(aiChatBox) {
             throw new Error(`API Error: ${response.status} ${response.statusText}`);
         }
         const data = await response.json();
-        const apiResponse = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, "$1").trim();
+        let apiResponse = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, "$1").trim();
+
+        // Sanitize API response to prevent XSS
+        apiResponse = sanitizeHTML(apiResponse);
+
         aiChatText.innerHTML = apiResponse;
     } catch (error) {
         console.error("Error generating AI response:", error);
         aiChatText.innerHTML = "Sorry, I couldn't process your request. Please try again later.";
     } finally {
-            scrollToBottom();
+        scrollToBottom();
         resetImageSelection();
     }
 }
+
+// Simple sanitization function
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
 
 function createChatBox(html, classes) {
     const div = document.createElement("div");
@@ -80,7 +92,7 @@ function handleChatResponse(userMessage) {
     const aiHtml = `
         <img src="./resources/ai.png" alt="AI Image" class="ai-img">
         <div class="ai-chat-box">
-            thinking....
+            perch is thinking....
         </div>
     `;
     const aiChatBox = createChatBox(aiHtml, "ai-box");
@@ -91,11 +103,10 @@ function handleChatResponse(userMessage) {
 }
 
 function scrollToBottom() {
-    setTimeout(() => {
+    requestAnimationFrame(() => {
         chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: "smooth" });
-    }, 0);
+    });
 }
-
 
 function resetImageSelection() {
     selectedImage.src = "img.svg";
@@ -145,6 +156,7 @@ clearBtn.addEventListener("click", () => {
         </div>
     `;
 });
+
 
 shareBtn.addEventListener("click", () => {
     const chatContent = chatContainer.innerText;
