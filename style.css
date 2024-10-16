@@ -28,7 +28,6 @@ header {
     align-items: center;
     color: #e9e9e9;
     padding: 30px 35px;
-
 }
 
 .left-nav {
@@ -47,7 +46,6 @@ header {
     display: flex;
     align-items: center;
     gap: 20px;
-
 }
 
 .right-nav h3 {
@@ -106,9 +104,11 @@ main {
     width: 90px;
     object-fit: cover;
 }
-.chooseimg{
+
+.chooseimg {
     width: 10%;
 }
+
 .user-chat-box,
 .ai-chat-box {
     padding: 13px 20px;
@@ -132,7 +132,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 13px 22px;
+    padding: 0px 22px;
     gap: 10px;
     outline: none;
     border-radius: 50px;
@@ -154,6 +154,49 @@ main {
     background: none;
     border: none;
     cursor: pointer;
+    position: relative;
+}
+
+.prompt-area button i {
+    font-size: 24px;
+    color: #333;
+    z-index: 1;
+}
+
+#p-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+#p-img i {
+    font-size: 24px;
+    color: #333;
+    z-index: 1;
+}
+
+#selected-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    display: none;
+    z-index: 2;
+}
+
+#selected-image.visible {
+    display: block;
 }
 
 footer {
@@ -164,81 +207,81 @@ footer {
     margin-bottom: 20px;
 }
 
+#image-input {
+    display: none;
+}
+
 .hidden {
     display: none;
 }
 
-#selected-image {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
 @media (max-width: 750px) {
 
-header {
-    padding: 15px;
-}
+    header {
+        padding: 15px;
+    }
 
-.left-nav {
-    font-size: 15px;
-}
+    .left-nav {
+        font-size: 15px;
+    }
 
-.left-nav span i {
-    font-size: 22px;
-}
+    .left-nav span i {
+        font-size: 22px;
+    }
 
-.right-nav {
-    gap: 10px;
-}
+    .right-nav {
+        gap: 10px;
+    }
 
-.right-nav h3 {
-    font-size: 13px;
-    padding: 4px 13px;
-}
+    .right-nav h3 {
+        font-size: 13px;
+        padding: 5px 14px;
+    }
 
-.right-nav span {
-    margin-left: 3px;
-}
+    .right-nav span {
+        margin-left: 3px;
+    }
 
-.user-box,
-.ai-box {
-    max-width: 95%;
-    padding: 5px 0px;
-    gap: 1px;
-}
+    .chat-container {
+        margin-top: 15px;
+    }
+    .user-box,
+    .ai-box {
+        max-width: 95%;
+        padding: 5px 0px;
+        gap: 1px;
+    }
 
-.user-img,
-.ai-img {
-    width: 60px;
-}
+    .user-img,
+    .ai-img {
+        width: 60px;
+    }
 
-.chooseimg{
-    width: 30%;
-}
-.user-chat-box,
-.ai-chat-box {
-    padding: 10px 15px;
-    font-size: 15px;
-}
+    .chooseimg {
+        width: 30%;
+    }
 
-.prompt-area {
-    width: 95%;
-    padding: 8px 18px;
-}
+    .user-chat-box,
+    .ai-chat-box {
+        padding: 10px 15px;
+        font-size: 15px;
+    }
 
-.prompt-area input {
-    font-size: 14px;
-}
+    .prompt-area {
+        width: 95%;
+        padding: 0px 15px;
+    }
 
-.prompt-area button {
-    font-size: 20px;
-}
+    .prompt-area input {
+        font-size: 14px;
+    }
 
-footer {
-    font-size: 11px;
-    margin-bottom: 10px;
-}
-  
+    .prompt-area button {
+        font-size: 20px;
+    }
+
+    footer {
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
 }

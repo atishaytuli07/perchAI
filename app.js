@@ -110,7 +110,7 @@ function scrollToBottom() {
 
 function resetImageSelection() {
     selectedImage.src = "img.svg";
-    selectedImage.classList.add("hidden");
+    selectedImage.classList.remove("visible");
     user.file = { mime_type: null, data: null };
 }
 
@@ -138,6 +138,7 @@ imageInput.addEventListener("change", () => {
         };
         selectedImage.src = `data:${user.file.mime_type};base64,${user.file.data}`;
         selectedImage.classList.remove("hidden");
+        selectedImage.classList.add("visible");
     };
     reader.readAsDataURL(file);
 });
